@@ -1,0 +1,12 @@
+get '/login' do
+  erb :'/auth/login'
+end
+
+post '/login' do
+  if User.authenticate(params[:username],params[password])
+    redirect :'/decks'
+  else
+  @error_message = true
+   redirect :'/login'  
+end
+

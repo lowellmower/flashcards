@@ -1,4 +1,4 @@
 class Deck < ActiveRecord::Base
   has_many :cards
-  # Remember to create a migration!
+  belongs_to :round
 end

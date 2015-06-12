@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :guesses
+  has_many :rounds
 
   include BCrypt
 

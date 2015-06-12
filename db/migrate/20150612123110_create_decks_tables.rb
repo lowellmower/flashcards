@@ -2,7 +2,7 @@ class CreateDecksTables < ActiveRecord::Migration
   def change
     create_table :decks do |t|
       t.string :name, null: false
-
+      t.references :round
 
       t.timestamps null: false
     end

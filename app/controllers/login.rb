@@ -6,6 +6,6 @@ post '/login' do
   if User.authenticate(params[:username],params[password])
     redirect :'/decks'
   else
-   redirect :'/login'  
+   redirect :'/login'
+ end
 end
-

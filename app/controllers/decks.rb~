@@ -1,8 +1,0 @@
-get '/decks' do
-  @decks = Deck.all  
-end
-
-post '/decks/:id' do
-  Deck.find_by(id: params[:id])
-  
-end

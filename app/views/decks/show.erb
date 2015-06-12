@@ -1,0 +1,8 @@
+<h1>Which game would you like to play?</h1>
+
+<div>
+  <% @decks.each do |deck| %>
+    <ul>
+      <% erb :'_deck', locals: {deck: deck} %>
+    </ul>
+</div>

@@ -1,3 +1,7 @@
-<li>
-  <a href="/decks/<%=deck.id%>"><%= deck.name %></a>
-</li>
+<ul>
+  <% decks.each do |deck| %>
+    <li>
+      <a href="/decks/<%=deck.id%>"><%= deck.name %></a>
+    </li>
+  <%end%>
+</ul>

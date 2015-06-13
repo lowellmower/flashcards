@@ -16,9 +16,12 @@ post '/decks/:id' do
   if params[:current_card]
     @current_card = @deck.cards.find(params[:current_card])
     if Deck.compare_question_answer(params[:answer], @current_card.answer)
-      redirect '/'
+      # create guess correct true
+      p Round.find(@round.id).guesses.build(correct: true, card_id: @current_card.id, round_id: @round.id).save
+    else
+      # create guess correct false
     end
+    # increment card
   end
-  # if compare_question_answer(params[:answer],
   erb :'/decks/show'
 end

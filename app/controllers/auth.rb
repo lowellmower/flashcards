@@ -19,10 +19,10 @@ end
 post '/signup' do
   user = User.create(params[:user])
   if user.save
-    "YAY!"
-    # redirect '/'
+    session[:user_id] = user.id
+    redirect '/decks'
   else
-    "bananananans"
+    redirect '/'
   end
 end
 

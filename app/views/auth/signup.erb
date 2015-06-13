@@ -1,5 +1,8 @@
 <div>
   <h3>Signup:</h3><br/>
+  <% if @username_taken %>
+    <h4>That username is taken please choose another one</h4>
+  <%end%>
   <form action="/signup" method="post">
     <label for="username">Username</label><br/>
     <input type="text" name="user[username]"/><br/>

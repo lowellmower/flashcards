@@ -12,7 +12,8 @@ post '/login' do
     session[:user_id] = @user.id
     redirect '/decks'
   else
-    "WTF ROSS!!!!!!!!!!"
+    @error_message = true
+    erb :'/auth/login'
   end
 end
 
@@ -22,7 +23,8 @@ post '/signup' do
     session[:user_id] = user.id
     redirect '/decks'
   else
-    redirect '/'
+    @username_taken = true
+    erb :'/auth/signup'
   end
 end
 

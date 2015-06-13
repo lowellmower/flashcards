@@ -8,7 +8,10 @@ end
 
 post '/login' do
   @user = User.find_by(username: params[:username])
-  if @user.password == params[:password]
+  if @user.nil?
+    @error_message = false
+    erb :'/auth/login'       
+  elsif @user.password == params[:password]
     session[:user_id] = @user.id
     redirect '/decks'
   else

@@ -25,7 +25,12 @@ post '/decks/:id' do
       @round.guesses.build(correct: false, card_id: @current_card.id, round_id: @round.id).save
     end
     # increment card
-    @current_card = @deck.cards.find(@current_card.id += 1)
+    if @deck.cards.count > @current_card.id
+      @current_card = @deck.cards.find(@current_card.id += 1)
+    else
+      session[:message] = ["You've completed the deck! Click button below to exit."]
+      @current_card
+    end
   end
   @correct_guesses = @round.guesses.where(correct: true).count
   @false_guesses = @round.guesses.where(correct: false).count

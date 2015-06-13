@@ -1,13 +1,16 @@
 <div>
-  <h3>Login:</h3><br/>
-  <% if @error_message %>
+  <h3>Login:</h3><br/>   
+  <% if @error_message == false%>
+    <h4>This username doesn't exist. Please sign up first.</h4>
+    <a href="/signup">Click here to sign up</a>
+  <% elsif @error_message == true %>    
     <h4>Your username or password is incorrect</h4>
-  <%end%>
-  <form action="/login" method="post">
-    <label for="username">Username</label><br/>
-    <input type="text" name="username"/><br/>
-    <label for="password">Password</label><br/>
-    <input type="password" name="password"/><br/>
-    <input type="submit" value="Login"/>
-  </form>
+  <%end%>  
+ <form action="/login" method="post">
+   <label for="username">Username</label><br/>
+   <input type="text" name="username"/><br/>
+   <label for="password">Password</label><br/>
+   <input type="password" name="password"/><br/>
+   <input type="submit" value="Login"/>
+ </form> 
 </div>

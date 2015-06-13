@@ -1,6 +1,11 @@
 <% if @round %>
+  <% if session[:message] %>
+   <p> <%= session[:message].first %> </p>
+  <%end%>
   <h1>round id: <%= @round.id%></h1>
   <h1>deck playing: <%= @deck.name %></h1>
+  <h2>Correct guesses: <%= @correct_guesses || 0 %></h2>
+  <h2>Incorrect guesses: <%= @false_guesses || 0 %></h2>
 
   <h3>What is the capital of: <%= @current_card.question %>  </h3>
 

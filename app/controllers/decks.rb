@@ -18,14 +18,16 @@ post '/decks/:id' do
     if Deck.compare_question_answer(params[:answer], @current_card.answer)
       # create guess correct true ***create helper methods****
       session[:message] = ["Correct!"]
-      Round.find(@round.id).guesses.build(correct: true, card_id: @current_card.id, round_id: @round.id).save
+      @round.guesses.build(correct: true, card_id: @current_card.id, round_id: @round.id).save
     else
       session[:message] = ["Sorry, the answer was #{@current_card.answer}"]
       # create guess correct false ***create helper methods****
-      Round.find(@round.id).guesses.build(correct: false, card_id: @current_card.id, round_id: @round.id).save
+      @round.guesses.build(correct: false, card_id: @current_card.id, round_id: @round.id).save
     end
     # increment card
     @current_card = @deck.cards.find(@current_card.id += 1)
   end
+  @correct_guesses = @round.guesses.where(correct: true).count
+  @false_guesses = @round.guesses.where(correct: false).count
   erb :'/decks/show'
 end

@@ -10,7 +10,7 @@ end
 
 post '/decks/:id' do
   @deck = Deck.find(params[:id])
-  @round = Round.where(deck_id: params[:id], user_id: session[:user_id]).first_or_create
+  @round = Round.where(deck_id: params[:id], user_id: session[:user_id], complete: false).first_or_create
   @current_card = @deck.cards.first
 
   if params[:current_card]
@@ -30,4 +30,11 @@ post '/decks/:id' do
   @correct_guesses = @round.guesses.where(correct: true).count
   @false_guesses = @round.guesses.where(correct: false).count
   erb :'/decks/show'
+end
+
+delete '/decks/:id' do
+  round = Round.where(user_id: session[:user_id], deck_id: params[:id], complete: false)
+  round.first.update_attributes(complete: true)
+  # round.destroy
+  redirect '/decks'
 end

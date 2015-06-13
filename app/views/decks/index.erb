@@ -3,7 +3,7 @@
 <div>
   <% @decks.each do |deck| %>
     <ul>
-      <% erb :'decks/_deck', locals: {deck: deck} %>
+      <%= erb :'decks/_deck', locals: {deck: deck} %>
     </ul>
   <%end%>
 </div>

@@ -26,3 +26,7 @@ post '/signup' do
   end
 end
 
+get '/logout' do
+  session.clear
+end
+

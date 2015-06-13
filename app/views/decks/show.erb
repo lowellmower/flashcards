@@ -1,10 +1,16 @@
-<h1>You'd like to play the <%= @deck.name %> deck?</h1>
+<% if @round %>
+  <h1>round id: <%= @round.id%></h1>
+  <h1>deck playing: <%= @deck.name %></h1>
 
-<form action="/decks/<%= @deck.id %>" method="post">
-<input type="hidden" name="yes">
-<input type="submit" value="Yes!">
-</form>
+  <h3>What is the capital of: <%= @deck.cards.first.question %>  </h3>
+<%else%>
+  <h1>You'd like to play the <%= @deck.name %> deck?</h1>
 
-<form action="/decks" method="get">
-<input type="submit" value="No, back to decks!">
-</form>
+  <form action="/decks/<%= @deck.id %>" method="post">
+  <input type="submit" value="Yes!">
+  </form>
+
+  <form action="/decks" method="get">
+  <input type="submit" value="No, back to decks!">
+  </form>
+<%end%>

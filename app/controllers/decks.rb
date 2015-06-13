@@ -9,7 +9,9 @@ get '/decks/:id' do
 end
 
 post '/decks/:id' do
-p params
-# magic
+# yes, deck ID
+  @deck = Deck.find(params[:id])
+  @round = Round.where(deck_id: params[:id], user_id: session[:user_id]).first_or_create
 
+  erb :'/decks/show'
 end

@@ -7,10 +7,10 @@ get '/signup' do
 end
 
 post '/login' do
-  p params
   @user = User.find_by(username: params[:username])
   if @user.password == params[:password]
-    "Howdy!!"
+    session[:user_id] = @user.id
+    redirect '/decks'
   else
     "WTF ROSS!!!!!!!!!!"
   end

@@ -1,5 +1,8 @@
 <div>
   <h3>Login:</h3><br/>
+  <% if @error_message %>
+    <h4>Your username or password is incorrect</h4>
+  <%end%>
   <form action="/login" method="post">
     <label for="username">Username</label><br/>
     <input type="text" name="username"/><br/>

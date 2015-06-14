@@ -18,3 +18,12 @@ end
 def total_false
   @round.guesses.where(correct: false).count
 end
+
+def current_user(session_id)
+  @user = User.find(session_id)
+  @user
+end
+
+def find_round
+  Round.where(deck_id: params[:id], user_id: session[:user_id], complete: false)
+end

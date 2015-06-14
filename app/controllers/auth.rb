@@ -1,3 +1,4 @@
+require 'pry'
 get '/login' do
   erb :'/auth/login'
 end
@@ -8,12 +9,12 @@ end
 
 post '/login' do
   @user = User.find_by(username: params[:username])
-  if @user.password == params[:password]
-    session[:user_id] = @user.id
-    redirect '/decks'
-  else
+  if @user == nil
     @error_message = true
     erb :'/auth/login'
+  elsif @user.password == params[:password]
+    session[:user_id] = @user.id
+    redirect '/decks'
   end
 end
 

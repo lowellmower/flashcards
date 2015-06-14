@@ -1,5 +1,11 @@
-<h1>Which game would you like to play?</h1>
+<div class="col-md-2"></div>
 
-<div>
-  <%= erb :'decks/_deck', locals: {decks: @decks} %>
+<div class="col-md-8">
+  <h1>Which game would you like to play?</h1>
+
+  <div>
+    <%= erb :'decks/_deck', locals: {decks: @decks} %>
+  </div>
 </div>
+
+<div class="col-md-2"></div>

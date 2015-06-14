@@ -1,0 +1,29 @@
+.buttons {
+  display: inline-block;
+}
+
+.text {
+  text-align: center;
+}
+
+#cardform {
+  margin: 0 auto;
+  width: 300px;
+}
+
+#formtwo {
+  margin: 20 auto;
+  width: 300px;
+}
+
+#green {
+  color: green;
+}
+
+#red {
+  color: red;
+}
+
+#blue {
+  color: blue;
+}

@@ -31,7 +31,7 @@ post '/decks/:id' do
   end
   @correct_guesses = total_correct
   @false_guesses = total_false
-  @deck_rounds = User.find(session[:user_id]).rounds.where(deck_id: @deck.id).count
+  @deck_rounds = Round.where(deck_id: @deck.id, user_id: session[:user_id]).count
   erb :'/decks/show'
 end
 

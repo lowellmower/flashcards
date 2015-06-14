@@ -23,7 +23,7 @@
   <title></title>
 </head>
 <body>
-  <% if session[:user_id] == !nil %>
+  <% if session[:user_id] %>
   <nav class="navbar navbar-default navbar-fixed-to-top">
     <div class="container">
       <form class="logout" action="/logout" method="post">

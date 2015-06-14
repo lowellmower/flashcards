@@ -1,7 +1,9 @@
-<ul>
+<table class="table table-hover">
   <% decks.each do |deck| %>
-    <li>
-      <a href="/decks/<%=deck.id%>"><%= deck.name %></a>
-    </li>
+    <tr>
+      <td>
+        <a href="/decks/<%=deck.id%>"><%= deck.name %></a>
+      </td>
+    </tr>
   <%end%>
-</ul>
+</table>

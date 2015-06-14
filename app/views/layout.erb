@@ -24,13 +24,15 @@
 </head>
 <body>
   <% if session[:user_id] %>
+
     <form action="/logout" method="post">
       <input type="hidden" name="_method" value="delete"/>
-      <input type="submit" value="logout"/>
+      <button class="btn btn-primary" type="submit" >Logout</button>
     </form>
   <%end%>
 
   <%= yield %>
-</div>
+
+
 </body>
 </html>

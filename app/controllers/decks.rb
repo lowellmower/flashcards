@@ -31,12 +31,12 @@ post '/decks/:id' do
   end
   @correct_guesses = total_correct
   @false_guesses = total_false
+  @deck_rounds = User.find(session[:user_id]).rounds.where(deck_id: @deck.id).count
   erb :'/decks/show'
 end
 
 delete '/decks/:id' do
   round = Round.where(user_id: session[:user_id], deck_id: params[:id], complete: false)
   round.first.update_attributes(complete: true)
-  # round.destroy
   redirect '/decks'
 end

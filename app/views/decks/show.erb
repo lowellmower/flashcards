@@ -5,11 +5,11 @@
     <% if session[:message] %>
      <h3 class="text"> <%= session[:message].first %> </h3>
     <%end%>
-    <%= erb :'decks/_play', locals: {deck: @deck,
-                                     round: @round,
-                                     current_card: @current_card,
+    <%= erb :'decks/_play', locals: {deck:            @deck,
+                                     round:           @round,
+                                     current_card:    @current_card,
                                      correct_guesses: @correct_guesses,
-                                     false_guesses: @false_guesses} %>
+                                     false_guesses:   @false_guesses} %>
 
   <%else%>
     <%= erb :'decks/_confirm', locals: {deck: @deck} %>

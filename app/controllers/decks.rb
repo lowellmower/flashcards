@@ -29,8 +29,8 @@ post '/decks/:id' do
       @current_card
     end
   end
-  @correct_guesses = @round.guesses.where(correct: true).count
-  @false_guesses = @round.guesses.where(correct: false).count
+  @correct_guesses = total_right
+  @false_guesses = total_wrong
   erb :'/decks/show'
 end
 

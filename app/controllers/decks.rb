@@ -10,28 +10,28 @@ end
 
 post '/decks/:id' do
   @deck = Deck.find(params[:id])
+  @deck_rounds = Round.where(deck_id: @deck.id, user_id: session[:user_id]).count
   @round = Round.where(deck_id: params[:id], user_id: session[:user_id], complete: false).first_or_create
   @current_card = @deck.cards.first
 
   if params[:current_card]
     @current_card = find_card(params[:current_card])
     if @deck.compare_question_answer(params[:answer], @current_card.answer)
-      @message = ["Correct!"]
       correct_guess
+      @message = ["Correct!"]
     else
-      @message = ["Sorry, the answer was #{@current_card.answer}"]
       false_guess
+      @message = ["Sorry, the answer was #{@current_card.answer}"]
     end
     if @deck.cards.count > @current_card.id
       @current_card = find_card(@current_card.id += 1)
     else
-      @message = ["You've completed the deck! Click button below to exit."]
       @current_card
+      @message = ["You've completed the deck! Click button below to exit."]
     end
   end
   @correct_guesses = total_correct
   @false_guesses = total_false
-  @deck_rounds = Round.where(deck_id: @deck.id, user_id: session[:user_id]).count
   erb :'/decks/show'
 end
 

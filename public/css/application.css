@@ -1,5 +1,11 @@
+.button-container {
+  text-align: center;
+}
+
 .buttons {
   display: inline-block;
+} .last {
+  margin-right: auto;
 }
 
 .text {
@@ -26,4 +32,16 @@
 
 #blue {
   color: blue;
+}
+
+.welcome h1 {
+  text-align: center;
+}
+
+.welcome-buttons {
+  text-align: center;
+}
+
+.logout button {
+  margin-top: 6px;
 }

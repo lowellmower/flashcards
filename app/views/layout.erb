@@ -24,11 +24,15 @@
 </head>
 <body>
   <% if session[:user_id] %>
-
-    <form action="/logout" method="post">
-      <input type="hidden" name="_method" value="delete"/>
-      <button class="btn btn-primary" type="submit" >Logout</button>
-    </form>
+  <nav class="navbar navbar-default navbar-fixed-to-top">
+    <div class="container">
+      <form class="logout" action="/logout" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button class="btn btn-primary" type="submit" >Logout</button>
+        <p class="navbar-text navbar-right">Signed in as: <%= @user.username %></p>
+      </form>
+    </div>
+  </nav>
   <%end%>
 
   <%= yield %>

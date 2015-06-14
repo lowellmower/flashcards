@@ -6,7 +6,7 @@ class Deck < ActiveRecord::Base
     user_input.downcase
   end
 
-  def compare_question_answer(user_input, card_answer)
+  def compare(user_input, card_answer)
     return true if sanatize_answer(user_input) == card_answer.downcase
     false
   end

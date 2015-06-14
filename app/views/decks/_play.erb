@@ -1,0 +1,25 @@
+<div class="row">
+      <h3 class="text">What is the capital of: <span id="blue"><%= @current_card.question %></span> </h3>
+      <form id="cardform" action="/decks/<%= @deck.id %>" method="post">
+        <input type="hidden" name="current_card" value="<%= @current_card.id %>">
+        <input type="text" name="answer">
+        <button  type="submit" class="btn btn-success">submit answer</button>
+      </form>
+    </div>
+
+    <div class="row">
+      <h2 class="text">Correct guesses: <span id="green"><%= @correct_guesses || 0 %></span></h2>
+      <h2 class="text">Incorrect guesses: <span id="red"><%= @false_guesses || 0 %></span></h2>
+    </div>
+
+    <div class="row">
+      <h6 class="text">Round: <%= @round.id%>
+      Deck playing: <%= @deck.name %></h6>
+    </div>
+
+    <div class="row">
+      <form style="display:flex;justify-content:center;align-items:flex-end;" action="/decks/<%= @deck.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn btn-danger">leave this deck</button>
+      </form>
+    </div>

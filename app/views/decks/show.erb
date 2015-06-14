@@ -5,46 +5,15 @@
     <% if session[:message] %>
      <h3 class="text"> <%= session[:message].first %> </h3>
     <%end%>
-    <div class="row">
+    <%= erb :'decks/_play', locals: {deck: @deck,
+                                     round: @round,
+                                     current_card: @current_card,
+                                     correct_guesses: @correct_guesses,
+                                     false_guesses: @false_guesses} %>
 
-      <h3 class="text">What is the capital of: <span id="blue"><%= @current_card.question %></span> </h3>
-
-      <form id="cardform" action="/decks/<%= @deck.id %>" method="post">
-        <input type="hidden" name="current_card" value="<%= @current_card.id %>">
-        <input type="text" name="answer">
-        <button  type="submit" class="btn btn-success">submit answer</button>
-      </form>
-
-
-    </div>
-    <div class="row">
-      <h2 class="text">Correct guesses: <span id="green"><%= @correct_guesses || 0 %></span></h2>
-      <h2 class="text">Incorrect guesses: <span id="red"><%= @false_guesses || 0 %></span></h2>
-    </div>
-    <div class="row">
-      <h6 class="text">Round: <%= @round.id%>
-      Deck playing: <%= @deck.name %></h6>
-    </div>
-    <div class="row">
-      <form style="display:flex;justify-content:center;align-items:flex-end;" action="/decks/<%= @deck.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button type="submit" class="btn btn-danger">leave this deck</button>
-      </form>
-    </div>
   <%else%>
-    <h1>You'd like to play the <%= @deck.name %> deck?</h1>
-    <div class="buttons">
-      <form action="/decks/<%= @deck.id %>" method="post">
-        <button class="btn btn-success" type="submit">Yes!</button>
-      </form>
-    </div>
-    <div class="buttons" >
-      <form action="/decks" method="get">
-        <button class="btn btn-danger" type="submit" >No, back to decks!</button>
-      </form>
-    <div>
+    <%= erb :'decks/_confirm', locals: {deck: @deck} %>
   <%end%>
 </div>
-<div class="col-md-3">
 
-</div>
+<div class="col-md-3"></div>

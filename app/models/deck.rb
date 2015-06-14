@@ -10,4 +10,5 @@ class Deck < ActiveRecord::Base
     return true if sanatize_answer(user_input) == card_answer.downcase
     false
   end
+
 end

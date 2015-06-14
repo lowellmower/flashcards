@@ -10,36 +10,33 @@ end
 
 post '/decks/:id' do
   @deck = Deck.find(params[:id])
+  @deck_rounds = Round.where(deck_id: @deck.id, user_id: session[:user_id]).count
   @round = Round.where(deck_id: params[:id], user_id: session[:user_id], complete: false).first_or_create
   @current_card = @deck.cards.first
 
   if params[:current_card]
-    @current_card = @deck.cards.find(params[:current_card])
-    if Deck.compare_question_answer(params[:answer], @current_card.answer)
-      # create guess correct true ***create helper methods****
-      session[:message] = ["Correct!"]
-      @round.guesses.build(correct: true, card_id: @current_card.id, round_id: @round.id).save
+    @current_card = find_card(params[:current_card])
+    if @deck.compare_question_answer(params[:answer], @current_card.answer)
+      correct_guess
+      @message = ["Correct!"]
     else
-      session[:message] = ["Sorry, the answer was #{@current_card.answer}"]
-      # create guess correct false ***create helper methods****
-      @round.guesses.build(correct: false, card_id: @current_card.id, round_id: @round.id).save
+      false_guess
+      @message = ["Sorry, the answer was #{@current_card.answer}"]
     end
-    # increment card
     if @deck.cards.count > @current_card.id
-      @current_card = @deck.cards.find(@current_card.id += 1)
+      @current_card = find_card(@current_card.id += 1)
     else
-      session[:message] = ["You've completed the deck! Click button below to exit."]
       @current_card
+      @message = ["You've completed the deck! Click button below to exit."]
     end
   end
-  @correct_guesses = @round.guesses.where(correct: true).count
-  @false_guesses = @round.guesses.where(correct: false).count
+  @correct_guesses = total_correct
+  @false_guesses = total_false
   erb :'/decks/show'
 end
 
 delete '/decks/:id' do
   round = Round.where(user_id: session[:user_id], deck_id: params[:id], complete: false)
   round.first.update_attributes(complete: true)
-  # round.destroy
   redirect '/decks'
 end

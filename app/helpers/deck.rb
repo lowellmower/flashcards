@@ -11,10 +11,10 @@ def find_card(card_info)
   @deck.cards.find(card_info)
 end
 
-def total_right
+def total_correct
   @round.guesses.where(correct: true).count
 end
 
-def total_wrong
+def total_false
   @round.guesses.where(correct: false).count
 end

@@ -2,8 +2,8 @@
 
 <div class="col-md-6">
   <% if @round %>
-    <% if session[:message] %>
-     <h3 class="text"> <%= session[:message].first %> </h3>
+    <% if @message %>
+     <h3 class="text"> <%= @message.first %> </h3>
     <%end%>
     <%= erb :'decks/_play', locals: {deck:            @deck,
                                      round:           @round,

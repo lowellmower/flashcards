@@ -16,21 +16,21 @@ post '/decks/:id' do
   if params[:current_card]
     @current_card = find_card(params[:current_card])
     if @deck.compare_question_answer(params[:answer], @current_card.answer)
-      session[:message] = ["Correct!"]
+      @message = ["Correct!"]
       correct_guess
     else
-      session[:message] = ["Sorry, the answer was #{@current_card.answer}"]
+      @message = ["Sorry, the answer was #{@current_card.answer}"]
       false_guess
     end
     if @deck.cards.count > @current_card.id
       @current_card = find_card(@current_card.id += 1)
     else
-      session[:message] = ["You've completed the deck! Click button below to exit."]
+      @message = ["You've completed the deck! Click button below to exit."]
       @current_card
     end
   end
-  @correct_guesses = total_right
-  @false_guesses = total_wrong
+  @correct_guesses = total_correct
+  @false_guesses = total_false
   erb :'/decks/show'
 end
 
